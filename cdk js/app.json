@@ -1,0 +1,43 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/resume/resume",
+        "pages/editor/editor",
+        "pages/accounting/accounting",
+        "pages/selfBill/selfBill",
+        "pages/cloud/cloud",
+        "pages/renovation/renovation",
+        "pages/renovationPreview/renovationPreview",
+        "pages/search/search",
+        "pages/local/local",
+        "pages/my/my",
+        "pages/vip/vip"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "CDK OFFICE",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#626567",
+        "selectedColor": "#2A8CE5",
+        "backgroundColor": "#FBFBFB",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/folder.png",
+                "selectedIconPath": "images/folder2.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "images/settings1.png",
+                "selectedIconPath": "images/settings.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

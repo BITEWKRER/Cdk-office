@@ -1,0 +1,42 @@
+<!-- <view class="header">
+    <image class="search" src="../../images/file.png"></image>
+    <button class="btn" bindtap="gotoSearch">搜索文件/模版</button>
+</view> -->
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+<button class="cbtn" bindtap="gotoLocal">本地文件</button>
+<button class="cbtn" bindtap="gotoCloud">云文件</button>
+<button class="cbtn" bindtap="inputFiles">导入聊天文件</button>
+
+
+
+
+<view class="hint">快捷模版</view>
+<view class="function">
+    <view class="functionraw">
+        <button class="btn1" bind:touchend="selectStencil" data-stencil="{{0}}">
+            <image class="bgimg" mode="scaleToFill" src="../../images/word.png" />
+        </button>
+    </view>
+    <text class="text">新建文档</text>
+    <view wx:for="{{stencils}}" wx:for-item="stencil" wx:for-index="index" wx:key="key1">
+        <view class="functionraw">
+            <button class="btn1" bind:touchend="selectStencil" data-stencil="{{stencil['id']}}">
+                <image class="bgimg" mode="scaleToFill" src="../../images/layout1.png" />
+            </button>
+        </view>
+        <text class="text">{{stencil["name"]}}</text>
+    </view>
+</view>
+
+<view class="hint">快捷工具</view>
+<view class="function">
+    <view wx:for="{{tools}}" wx:for-item="stencil" wx:for-index="index" wx:key="key1">
+        <view class="functionraw">
+            <button class="btn1" bind:touchend="selectStencil" data-stencil="{{stencil['id']}}">
+                <image class="bgimg" mode="scaleToFill" src="../../images/notepad.png" />
+            </button>
+        </view>
+        <text class="text">{{stencil["name"]}}</text>
+    </view>
+</view>

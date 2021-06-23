@@ -1,0 +1,49 @@
+.table {
+    border: 2rpx solid #cccccc;
+    width: 100%;
+}
+
+.scroll {
+    margin-top: 20rpx;
+    height: 85vh;
+    width: 100%;
+    border: 4rpx solid rgb(0, 0, 0);
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.tr {
+    margin: 4rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.th {
+    font-weight: 900;
+    background-color: rgb(130, 190, 140);
+    font-size: 24rpx;
+    color: rgb(211, 235, 134);
+}
+
+.th,
+.td {
+    padding: 20rpx;
+    width: 100%;
+    text-align: center;
+}
+
+.tr,
+.btn {
+    margin: 6rpx;
+}
+
+.sum {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.classifyName {
+    background-color: navajowhite;
+}

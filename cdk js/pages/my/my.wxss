@@ -1,0 +1,69 @@
+.userinfo {
+  margin-left: 40rpx;
+  color: red;
+}
+
+.iscloud {
+  color: green;
+  margin-left: 40rpx;
+}
+
+.usFerinfo {
+  color: gray;
+  margin-left: 40rpx;
+}
+
+.userimg {
+  width:160rpx;
+  height: 160rpx;
+  margin-top: 80rpx;
+  margin-left: 120rpx;
+  border-radius: 10rpx;
+}
+
+.getUserInfo {
+  width: 75%;
+  height: 80rpx;
+  margin-top: 80rpx;
+}
+
+.rightPart {
+  margin-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50rpx;
+}
+
+.btn {
+  margin-top: 40rpx;
+  height:100rpx;
+  background-color: rgba(188, 218, 139, 0.39);
+}
+
+.function {
+  margin: 4rpx;
+  margin-top: 60rpx;
+}
+
+.progress {
+  margin: 4rpx;
+}
+
+.text {
+  margin-left: 65%;
+}
+.my-cells{
+  margin-top: 80rpx;
+}
+
+.img{
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 20rpx;
+}

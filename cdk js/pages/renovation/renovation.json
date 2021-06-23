@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "|装修选材",
+  "usingComponents": {
+    "mp-toptips": "../../components/toptips/toptips"
+  },
+  "disableScroll": true
+}

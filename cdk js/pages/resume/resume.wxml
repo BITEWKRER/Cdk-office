@@ -1,0 +1,87 @@
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+<!-- 基本信息蒙板 -->
+<view class="mask" catchtouchmove="{{true}}" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+
+    <block wx:if="{{flag == 'baseInfo'}}">
+        <input class="input" placeholder="姓名" bindchange="bindchange" maxlength="{{15}}" data-id="name" value="{{content['name']}}" confirm-type='done'></input>
+        <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{sex}}" data-id="{{index}}">
+            <view>
+                默认选择：{{sex[index]}}
+            </view>
+        </picker>
+        <input class="input" type="number" placeholder="电话" bindchange="bindchange" maxlength="{{11}}" data-id="phone" value="{{content['phone']}}" confirm-type='done'></input>
+        <input class="input" placeholder="求职意向" bindchange="bindchange" maxlength="{{10}}" value="{{content['purpose']}}" data-id="purpose" confirm-type='done'></input>
+        <input class="input" placeholder="邮箱" bindchange="bindchange" maxlength="{{15}}" value="{{content['E_mail']}}" data-id="E_mail" confirm-type='done'></input>
+        <input class="input" type="number" placeholder="期望薪资" maxlength="{{6}}" value="{{content['money']}}" bindchange="bindchange" data-id="money" confirm-type='done'></input>
+    </block>
+
+    <block wx:if="{{flag == 'education'}}">
+        <input class="input" placeholder="毕业院校" bindchange="bindchange" maxlength="{{10}}" value="{{content['university']}}" data-id="university" confirm-type='done'></input>
+        <input class="input " placeholder="学历" bindchange="bindchange" maxlength="{{5}}" data-id="education" value="{{content['education']}}" confirm-type='done'></input>
+        <input class="input" placeholder="主修专业" bindchange="bindchange" maxlength="{{10}}" data-id="major" value="{{content['major']}}" confirm-type='done'></input>
+    </block>
+
+    <view class="row">
+        <button class="btn" bindtap="cancel" data-id="{{flag}}">返回</button>
+        <button class="btn" bindtap="confirm" data-id="{{flag}}">提交</button>
+    </view>
+</view>
+
+<view class="window">
+    <mp-cells ext-class="base" title="我的基本信息" bindtap="touch" data-id="baseInfo">
+        <view class="row" bindtap="touch" data-id="baseInfo">
+            <mp-cell class="left" bindtap="touch" data-id="baseInfo">姓名:{{content["name"]}}</mp-cell>
+            <mp-cell class="right" bindtap="touch" data-id="baseInfo">性别：{{content["sex"]}}</mp-cell>
+        </view>
+        <view class="row" bindtap="touch" data-id="baseInfo">
+            <mp-cell class="left" bindtap="touch" data-id="baseInfo">电话:{{content["phone"]}}</mp-cell>
+            <mp-cell class="right" bindtap="touch" data-id="baseInfo">求职意向：{{content["purpose"]}}</mp-cell>
+        </view>
+        <view class="row" bindtap="touch" data-id="baseInfo">
+            <mp-cell class="left" bindtap="touch" data-id="baseInfo">邮箱:{{content["E_mail"]}}</mp-cell>
+            <mp-cell class="right" bindtap="touch" data-id="baseInfo">期望薪资:{{content["money"]}}</mp-cell>
+        </view>
+    </mp-cells>
+
+    <mp-cells ext-class="edu" title="教育经历" bindtap="touch" data-id="education">
+        <view class="row" bindtap="touch" data-id="education">
+            <mp-cell class="left" bindtap="touch" data-id="education">毕业院校:{{content["university"]}}</mp-cell>
+            <mp-cell class="right" bindtap="touch" data-id="education">专业名称：</mp-cell>
+        </view>
+        <view class="row" bindtap="touch" data-id="education">
+            <mp-cell class="left" bindtap="touch" data-id="education">学历:{{content["education"]}}</mp-cell>
+            <mp-cell class="right" bindtap="touch" data-id="education">{{content["major"]}}</mp-cell>
+        </view>
+    </mp-cells>
+
+    <block wx:if="{{nothidden}}">
+        <label class="count">{{total1}}/500字</label>
+        <mp-cells ext-class="edu" title="证书奖项">
+            <textarea class="text" bindblur="textConfirm" maxlength="{{500}}" placeholder="1.xxxxxxx大赛-一等奖" data-id="honers" value="{{content['honers']}}"></textarea>
+            <!-- {{content["honers"]}} -->
+        </mp-cells>
+
+        <label class="count">{{total2}}/500字</label>
+        <mp-cells ext-class="edu" title="项目经验" bindtap="touch" data-id="experiences">
+            <textarea class="text" bindblur="textConfirm" maxlength="{{500}}" placeholder="[开始日期]-[结束日期][职务]•[岗位]•[公司名称]" data-id="experiences" value="{{content['experiences']}}"></textarea>
+            <!-- {{content["experiences"]}} -->
+        </mp-cells>
+
+        <label class="count">{{total3}}/500字</label>
+        <mp-cells ext-class="edu" title="沟通能力" bindtap="touch" data-id="communicate">
+            <textarea class="text" bindblur="textConfirm" maxlength="{{500}}" placeholder="语言组织能力和沟通能力" data-id="communicate" value="{{content['communicate']}}"></textarea>
+            <!-- {{content["experiences"]}} -->
+        </mp-cells>
+
+
+        <label class="count">{{total4}}/500字</label>
+        <mp-cells ext-class="edu" title="自我评价" bindtap="touch" data-id="self_evaluation">
+            <textarea class="text" bindblur="textConfirm" maxlength="{{500}}" placeholder="个人优点长处" data-id="self_evaluation" value="{{content['self_evaluation']}}"></textarea>
+            <!-- {{content["self_evaluation"]}} -->
+        </mp-cells>
+        <button class="btn" bindtap="_export">提交</button>
+    </block>
+
+</view>

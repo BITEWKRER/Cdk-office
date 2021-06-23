@@ -1,0 +1,41 @@
+<view class="container1">
+    <!-- 蒙板 -->
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="modalDlg" wx:if="{{showModal}}">
+        <view class="hint1">扫码支付，输入单号即可</view>
+
+        <block wx:if="{{what}}">
+            <image class="img" mode="scaleToFill" src="../../images/zfb.jpg"></image>
+            <input class="input" bindblur="bindChange" placeholder="输入转账后的转账单码" ></input>
+            <view class="row">
+                <button class="btn1" bindtap="cancel">取消</button>
+                <button class="btn1" bindtap="confirm" data-id="zfb">添加</button>
+            </view>
+        </block>
+        <block wx:else>
+            <image class="img" mode="scaleToFill" src="../../images/wx.png"></image>
+            <input class="input" bindblur="bindChange" placeholder="输入转账后的转账单码" ></input>
+            <view class="row">
+                <button class="btn1" bindtap="cancel">取消</button>
+                <button class="btn1" bindtap="confirm" data-id="wx">添加</button>
+            </view>
+        </block>
+
+    </view>
+
+
+    <view class="containter">
+        <view class="hint">
+            <view>会员权益：</view>
+            <view class="hint"> 1.云文件帮助找回</view>
+            <view class="hint"> 2.云空间享有100MB容量</view>
+            <view class="hint"> 3.24小时在线客服</view>
+            <view class="hint"> 4.人工服务（在线制作文件，报表等）</view>
+            <view class="hint"> 5.抢先体验新版本资格</view>
+            <view class="hint"> 6. 5元终身会员</view>
+        </view>
+
+        <button class="btn" bindtap="buy" data-id="zfb">支付宝支付</button>
+        <button class="btn" bindtap="buy" data-id="wx">微信支付</button>
+    </view>
+</view>

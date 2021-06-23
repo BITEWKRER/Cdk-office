@@ -1,0 +1,92 @@
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+<!-- 基本信息蒙板 -->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{show}}"></view>
+<view class="modalDlg" wx:if="{{show}}">
+
+    <view>项目名称</view>
+    <input class="input" placeholder="请输入项目名称" bindchange="bindchange" data-id="name" confirm-type='done' maxlength="{{15}}"></input>
+
+    <view class="row">
+        <button class="btn" bindtap="back">取消</button>
+        <button class="btn" bindtap="confirm">提交</button>
+    </view>
+</view>
+
+
+
+
+<view class="container1">
+    <view class="count-all">预算合计：{{countAll}}元</view>
+    <picker mode="selector" value="{{index}}" wx:for-item="item" range="{{classify}}" bind:change="changeIndex">
+        <view class="hint">点击快速跳转：{{classify[index]}}</view>
+    </picker>
+    <scroll-view class="goods-container" scroll-y="{{true}}" scroll-into-view="{{List[index].id}}" scroll-with-animation="{{true}}" style="-webkit-overflow-scrolling:touch">
+        <view class="goods-list" wx:for="{{List}}" wx:for-item="classify" wx:key="key1" id="{{classify.id}}">
+            <!-- classify title -->
+            <!-- classify item -->
+            <view wx:if="{{classify.Custom_item}}">
+                <view class="inline">
+                    <view class="title">{{classify.classifyName}}</view>
+                    <button class="addbtn" type="primary" bindtap="addGoods">添加</button>
+                </view>
+                <block>
+                    <view class="item" wx:for="{{classify.goods}}" wx:for-item="item" wx:key="key4" wx:for-index="index">
+                        <view class="attr">
+                            <view class="inline">
+                                <label class="name">名称：</label>
+                                <input class="input1" value="{{item.name}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="name" />
+                                <button class="cutbtn" type="primary" size="mini" bindtap="nameConfirm" data-root="{{[classify.classifyName,item.name]}}" data-id="{{index}}">
+                                    √
+                                </button>
+                                <button class="cutbtn" type="warn" size="mini" bindtap="cutGoods" data-id="{{index}}">
+                                    ×
+                                </button>
+                            </view>
+                            单位 ：
+                            <picker mode="selector" value="{{item.unit}}" bindchange="setAttr" range="{{unit}}" data-root="{{[classify.classifyName,item.name]}}" data-id="unit">
+                                <view class="picker">{{item.unit}}</view>
+                            </picker>
+                            数量 ：
+                            <input class="input" type="digit" value="{{item.num}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="num" /> 单价 ：
+                            <input class="input" type="digit" value="{{item.price}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="price" /> 备注(可包括用材等相关信息) ：
+                            <input class="input" type="text" value="{{item.remark}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="remark" />
+                            <view class="count">小计：{{item.count}}元</view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+            <view wx:else>
+                <view class="title">{{classify.classifyName}}</view>
+                <view class="item" wx:for="{{classify.goods}}" wx:for-item="item" wx:key="key2" wx:for-index="index">
+                    <!-- item title -->
+                        <checkbox-group bindchange="setAttr" data-root="{{[classify.classifyName,item.name,item.checked]}}" data-id="checked">
+                            <label class="name">
+                                <checkbox checked="{{item.checked}}" /> {{(index + 1 )+ "." + item.name}}
+                            </label>
+                        </checkbox-group>
+
+                        <!-- attributes -->
+                        <view class="attr">
+                            单位 ：
+                            <picker mode="selector" value="{{item.unit}}" bindchange="setAttr" range="{{unit}}" data-root="{{[classify.classifyName,item.name]}}" data-id="unit">
+                                <view class="picker">{{item.unit}}</view>
+                            </picker>
+                            数量 ：
+                            <input class="input" type="digit" value="{{item.num}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="num" /> 单价 ：
+                            <input class="input" type="digit" value="{{item.price}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="price" /> 备注(可包括用材等相关信息) ：
+                            <input class="input" type="text" value="{{item.remark}}" bindinput="setAttr" data-root="{{[classify.classifyName,item.name]}}" data-id="remark" />
+                            <view class="count">小计：{{item.count}}元</view>
+                        </view>
+                </view>
+            </view>
+
+        </view>
+    </scroll-view>
+    <view class="inline">
+        <button class="btn2" type="warn" size="default" bind:tap="reset">重置表单</button>
+        <button class="btn2" type="primary" size="default" plain="{{true}}" bind:tap="priview">
+            预览《预算表》
+        </button>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="drawer_screen" bindtap="showOrHide" wx:if="{{isShow}}" catchtouchmove="myCatchTouch"></view>
+<view>
+  <image src="../../images/export.png" class="buttom" animation="{{animDelLots}}" bindtap="exportfile"></image>
+  <image src="../../images/add.png" class="buttom" animation="{{animAdd}}" bindtap="add"></image>
+  <image src="../../images/menu.png" class="buttom1" animation="{{animMain}}" bindtap="showOrHide"></image>
+</view>

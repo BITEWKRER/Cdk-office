@@ -1,0 +1,83 @@
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+
+<!-- 基本信息蒙板 -->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+  <input class="input" placeholder="单位名称" bindchange="bindchange" data-id="name" confirm-type='done' maxlength="{{10}}"></input>
+  <input class="input" placeholder="部门" bindchange="bindchange" data-id="department" confirm-type='done' maxlength="{{10}}"></input>
+  <input class="input" placeholder="对账人" bindchange="bindchange" data-id="who" confirm-type='done' maxlength="{{10}}"></input>
+  <view class="row">
+    <button class="btn" bindtap="back">取消</button>
+    <button class="btn" bindtap="confirm">提交</button>
+  </view>
+</view>
+
+<!-- 悬浮按钮 -->
+<!-- <button bindtap='add'>
+  <image class="add_icon" src="../../images/add.png"></image>
+</button> -->
+<menu hidden id='icon' bind:addEvent="add" bind:export="_export"></menu>
+
+
+<!-- 条目蒙板 -->
+<view class="maskitem" catchtouchmove="preventTouchMove" wx:if="{{showEnter}}"></view>
+<view class="modalDlgitem" wx:if="{{showEnter}}">
+  <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}" data-id="delivery_date">
+    <view class="date">
+      发货日期: {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
+    </view>
+  </picker>
+  <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}" data-id="arrival_date">
+    <view class="date">
+      到货日期: {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+    </view>
+  </picker>
+
+  <input class="input" placeholder="商品名称" bindchange="bindchange" data-id="merchandise_name" confirm-type='done' maxlength="{{15}}"></input>
+  <input class="input" type="digit" placeholder="应付金额" bindchange="bindchange" data-id="should_get" confirm-type='done' maxlength="{{10}}"></input>
+  <input class="input" type="digit" placeholder="已付金额" bindchange="bindchange" data-id="already_get" confirm-type='done' maxlength="{{10}}"></input>
+  <input class="input" placeholder="负责人(负责人相同，只需输入一次)" bindchange="bindchange" data-id="responsible_for" maxlength="{{10}}"></input>
+  <input class="input" placeholder="摘要" bindchange="bindchange" data-id="remark" confirm-type='done' maxlength="{{15}}"></input>
+  <label class="input1">{{charNumber}}/15</label>
+
+  <view class="row">
+    <button class="btn" bindtap="cancel">返回</button>
+    <button class="btn" bindtap="itemConfirm">提交</button>
+  </view>
+</view>
+
+
+<view class="container">
+
+  <block wx:if="{{accountListLength == 0}}">
+    <label class="hint">细节决定成败，尤其是这里！</label>
+  </block>
+  <block wx:else>
+    <scroll-view scroll-y="true" enable-back-to-top="true" scroll-with-animation="false">
+      <view class="tr" wx:for="{{accountList}}" wx:for-item="item" wx:for-index="index" wx:key="key1">
+        <view class="item">
+          <view class="row">
+            <label class="name">商品名称:{{item["merchandise_name"]}}</label>
+            <button size="mini" class="cut" bindtap="cut" data-id="{{index}}">删除</button>
+          </view>
+          <view class="row">
+            <view class="left">发货日期:{{item["delivery_date"]}}</view>
+            <view class="right">应付金额:{{item["should_get"]}}元</view>
+          </view>
+          <view class="row">
+            <view class="left">到达日期:{{item["arrival_date"]}}</view>
+            <view class="right">已付金额:{{item["already_get"]}}元</view>
+          </view>
+          <view class="row">
+            <view class="left">负责人:{{item["responsible_for"]}}</view>
+            <view class="right">剩余金额:{{item["left_money"]}}元</view>
+          </view>
+          <view class="row">
+            <view class="left">备注:{{item["remark"]}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+</view>

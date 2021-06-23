@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+      "mp-cell": "../../components/cell/cell",
+      "mp-cells": "../../components/cells/cells"
+  },
+  "navigationBarTitleText": "发现最好的你"
+}

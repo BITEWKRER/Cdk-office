@@ -1,0 +1,74 @@
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+<view class="container1">
+  <!-- 蒙板 -->
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modalDlg" wx:if="{{showModal}}">
+    <input class="input" focus="auto" placeholder="名称" bindinput="getChange" data-id="itemName" confirm-type='done' maxlength="{{15}}"></input>
+    <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{income_or_expenditure}}" data-id="income_or_expenditure">
+      <view>
+        默认选择：{{income_or_expenditure[index]}}
+      </view>
+    </picker>
+    <input class="input" type="digit" placeholder="金额" bindinput="getChange" data-id="money" confirm-type='done' maxlength="{{10}}"></input>
+    <block wx:if="{{time == ''}}">
+      <picker class="picker" mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="bindTimeChange">
+        <view>
+          时间点：默认当前时间
+        </view>
+      </picker>
+    </block>
+    <block wx:else>
+      <picker class="picker" mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="bindTimeChange">
+        <view>
+          当前时间选择: {{time}}
+        </view>
+      </picker>
+    </block>
+    <input class="input" placeholder="备注" bindinput="getChange" data-id="remark" confirm-type='done' maxlength="{{15}}"></input>
+    <label class="input1">{{charNumber}}/15</label>
+
+    <view class="row">
+      <button class="btn" bindtap="cancel">取消</button>
+      <button class="btn" bindtap="confirm">添加</button>
+    </view>
+  </view>
+
+
+  <menu id='icon' bind:addEvent="_addEvent" bind:export="_export"></menu>
+
+
+  <!-- ui -->
+  <block wx:if="{{billListLength === 0}}">
+    <label class="hint">美好生活，从记账开始！</label>
+  </block>
+  <block wx:else>
+
+    <view class="up">
+      <scroll-view class="scroll" scroll-y="true" enable-back-to-top="true" scroll-with-animation="false">
+        <block wx:for="{{billList}}" wx:for-item="item" wx:for-index="index" wx:key="key1">
+          <view class="item">
+            <view class="row">
+              <label class="name">名称：{{item["itemName"]}}</label>
+              <button size="mini" class="cut" bindtap="cut" data-id="{{index}}">删除</button>
+            </view>
+            <view class="row">
+              <label class="left">日期：{{item["ymd"]}}</label>
+              <label class="right">时间：{{item["time"]}}</label>
+            </view>
+            <view class="row">
+              <view wx:if="{{item['income_or_expenditure'] == 0}}">
+                <lable class="left">类型：支出</lable>
+              </view>
+              <view wx:else>
+                <lable class="left">类型：收入</lable>
+              </view>
+              <label class="right">金额：{{item["money"]}}元</label>
+            </view>
+            <label class="left">备注：{{item["remark"]}}</label>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </block>
+</view>

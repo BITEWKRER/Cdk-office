@@ -1,0 +1,41 @@
+.buttom {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 150rpx;
+  right: 75rpx;
+  z-index: 1001;
+}
+.buttom1 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom:142rpx;
+  right: 68rpx;
+  z-index: 1200;
+}
+
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: rgba(19, 13, 13, 0.6);
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.drawer_box {
+  overflow: hidden;
+  position: fixed;
+  z-index: 1001;
+}

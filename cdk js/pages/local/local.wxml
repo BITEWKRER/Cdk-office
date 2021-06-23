@@ -1,0 +1,41 @@
+<mp-toptips msg="{{info}}" type="{{tipType}}" show="{{info}}"></mp-toptips>
+
+
+<view class="header">
+  <image class="search" src="../../images/file.png"></image>
+  <input class="input" placeholder="搜索本地文件" bindinput="getChange" bindconfirm="comfirmSearch" maxlength="{{15}}"></input>
+
+</view>
+<view class="container">
+  <block wx:if="{{hasInfo}}">
+    <block wx:if="{{searchFilesLength != 0}}">
+      <scroll-view scroll-y="true" upper-threshold="50">
+        <view wx:for="{{searchFiles}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+          <view class="item">
+            <view class="name">{{item}}</view>
+            <button class="btn" bindtap="getmore" data-id="search" data-value="{{index}}">管理</button>
+          </view>
+        </view>
+      </scroll-view>
+    </block>
+    <block wx:else>
+      <label class="hint">这里没有找到哟，试试云文件吧！</label>
+    </block>
+  </block>
+  <block wx:else>
+    <block wx:if="{{recentFilesLength == 0}}">
+      <label class="hint">暂无最近本地文件</label>
+    </block>
+    <block wx:else>
+      <label>最近文件</label>
+      <scroll-view scroll-y="true" upper-threshold="50">
+        <view wx:for="{{recentFiles}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+          <view class="item">
+            <view class="name">{{item}}</view>
+            <button class="btn" bindtap="getmore" data-id="recent" data-name="{{item}}">管理</button>
+          </view>
+        </view>
+      </scroll-view>
+    </block>
+  </block>
+</view>

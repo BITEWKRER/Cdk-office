@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "menu": "../../components/menu/menu",
+    "mp-toptips": "../../components/toptips/toptips"
+  },
+  "navigationBarTitleText": "月记账"
+}

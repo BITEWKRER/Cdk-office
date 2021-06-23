@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "|报表预览",
+    "usingComponents": {
+        "mp-toptips": "../../components/toptips/toptips"
+    }
+}

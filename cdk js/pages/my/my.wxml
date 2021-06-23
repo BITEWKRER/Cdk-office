@@ -1,0 +1,36 @@
+<view>
+  <view class="userinfo">
+    <button class="getUserInfo" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      点我登陆
+    </button>
+    <view class="header" wx:else>
+      <image class="userimg" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class="rightPart">
+        <text class="userinfo">{{userInfo.nickName}}</text>
+        <block wx:if="{{isvip}}">
+          <text class="iscloud">云会员</text>
+        </block>
+        <block wx:else>
+          <text class="usFerinfo">普通用户</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class="function">
+    <view>我的云空间容量</view>
+    <progress class="progress" percent="{{percent}}" border-radius="5" color="#87CEFA" active show-info />
+    <view class="text">{{last}}Mb/{{total}}Mb</view>
+    <button class="btn" > 购买云空间</button>
+    <button class="btn" open-type="feedback">帮助与反馈</button>
+  </view> -->
+
+  <mp-cells ext-class="my-cells" title="我的云空间容量">
+    <progress class="progress" percent="{{percent}}" border-radius="5" color="#87CEFA" active show-info />
+    <view class="text">{{last}}/{{total}}Mb</view>
+
+    <mp-cell title="购买云空间" footer="可享有多种权益，更多请点击查看" bindtap="buy"></mp-cell>
+
+    <mp-cell class="btn" open-type="feedback">帮助与反馈</mp-cell>
+  </mp-cells>
+</view>
